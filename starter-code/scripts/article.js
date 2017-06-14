@@ -13,6 +13,7 @@ Article.prototype.toHtml = function() {
   with a class of template a display of none. Let's make
   sure we're not accidentally hiding our cloned article! */
   $($newArticle).removeClass('template');
+
   if (!this.publishedOn) $newArticle.addClass('draft');
   $newArticle.data('category', this.category);
 
@@ -25,6 +26,11 @@ Article.prototype.toHtml = function() {
   3. article title,
   4. article body, and
   5. publication date. */
+  $newArticle.find('h1').text(this['title']);
+  $newArticle.find('address').find('a').attr('href', this.authorUrl);
+  $newArticle.find('address').find('a').text(this.author);
+  $newArticle.find('.article-body').html(this.body);
+  $newArticle.find('time').text(this.publishedOn);
 
   $newArticle.find('.byline a').html(this.author);
 
