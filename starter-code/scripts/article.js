@@ -12,7 +12,7 @@ Article.prototype.toHtml = function() {
   However, in our modules.css stylesheet, we gave all elements
   with a class of template a display of none. Let's make
   sure we're not accidentally hiding our cloned article! */
-
+  $($newArticle).removeClass('template');
   if (!this.publishedOn) $newArticle.addClass('draft');
   $newArticle.data('category', this.category);
 
@@ -20,11 +20,11 @@ Article.prototype.toHtml = function() {
   of the current template clone with properties from this particular Article instance.
   We need to fill in:
 
-    1. author name,
-    2. author url,
-    3. article title,
-    4. article body, and
-    5. publication date. */
+  1. author name,
+  2. author url,
+  3. article title,
+  4. article body, and
+  5. publication date. */
 
   $newArticle.find('.byline a').html(this.author);
 
