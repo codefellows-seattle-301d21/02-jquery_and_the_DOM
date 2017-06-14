@@ -3,8 +3,7 @@
 var articles = [];
 
 function Article (rawDataObj) {
-  // TODO: Use the JS object passed in to complete this constructor function:
-  // Save ALL the properties of `rawDataObj` into `this`
+  Object.keys(rawDataObj).forEach(key => this[key] = rawDataObj[key]);
 }
 
 Article.prototype.toHtml = function() {
@@ -27,7 +26,7 @@ Article.prototype.toHtml = function() {
     4. article body, and
     5. publication date. */
 
-    $newArticle.find('.byline a').html(this.author);
+  $newArticle.find('.byline a').html(this.author);
 
   // Display the date as a relative number of 'days ago'
   $newArticle.find('time').html('about ' + parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000) + ' days ago');
