@@ -15,10 +15,12 @@ function Article (rawDataObj) {
 
 Article.prototype.toHtml = function() {
   var $newArticle = $('article.template').clone();
-  /* TODO: This cloned article still has a class of template.
+  /* DONE: This cloned article still has a class of template.
   However, in our modules.css stylesheet, we gave all elements
   with a class of template a display of none. Let's make
   sure we're not accidentally hiding our cloned article! */
+
+  $newArticle.removeClass('template');
 
   if (!this.publishedOn) $newArticle.addClass('draft');
   $newArticle.data('category', this.category);
@@ -34,6 +36,9 @@ Article.prototype.toHtml = function() {
     5. publication date. */
 
     $newArticle.find('.byline a').html(this.author);
+    $newArticle.find('.byline a').attr("href", this.authorUrl);
+    $newArticle.find('h1').html(this.title);
+    
 
   // Display the date as a relative number of 'days ago'
   $newArticle.find('time').html('about ' + parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000) + ' days ago');
